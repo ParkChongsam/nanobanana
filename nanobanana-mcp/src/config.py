@@ -36,7 +36,7 @@ class Config:
     # Prompt settings
     AUTO_TRANSLATE: bool = os.getenv("AUTO_TRANSLATE", "True").lower() == "true"
     DEFAULT_LANGUAGE: str = os.getenv("DEFAULT_LANGUAGE", "ko")
-    ADD_TEXT_EXCLUSION: bool = os.getenv("ADD_TEXT_EXCLUSION", "True").lower() == "true"
+    ADD_TEXT_EXCLUSION: bool = os.getenv("ADD_TEXT_EXCLUSION", "False").lower() == "true"  # Changed to False to allow text in images
     
     @classmethod
     def validate(cls) -> None:

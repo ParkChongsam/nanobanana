@@ -45,16 +45,8 @@ class GenerateImageTool:
         try:
             logger.info(f"Starting image generation with style: {style}, quality: {quality}")
             
-            # Optimize prompt based on style and quality
-            optimized_prompt = self.client._optimize_prompt(prompt, style)
-            
-            # Add quality-specific enhancements
-            if quality == "high":
-                optimized_prompt += ", 8K resolution, ultra-detailed, masterpiece quality"
-            elif quality == "medium":
-                optimized_prompt += ", high resolution, detailed"
-            elif quality == "low":
-                optimized_prompt += ", simple, clean"
+            # Optimize prompt based on style and quality (now includes quality handling)
+            optimized_prompt = self.client._optimize_prompt(prompt, style, quality)
             
             logger.info(f"Optimized prompt: {optimized_prompt}")
             

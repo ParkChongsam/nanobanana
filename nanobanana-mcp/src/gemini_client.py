@@ -66,8 +66,8 @@ class GeminiImageClient:
             
         return text
     
-    def _optimize_prompt(self, prompt: str, style: str = "photo") -> str:
-        """Optimize prompt for better image generation."""
+    def _optimize_prompt(self, prompt: str, style: str = "photo", quality: str = "high") -> str:
+        """Optimize prompt for better image generation with smart text handling."""
         # Translate to English if needed
         optimized = self._translate_to_english(prompt)
         
@@ -84,16 +84,31 @@ class GeminiImageClient:
         if style in style_prefixes and not optimized.lower().startswith(("a ", "an ", "the ")):
             optimized = f"{style_prefixes[style]} {optimized}"
         
-        # Add text exclusion if enabled
-        if Config.ADD_TEXT_EXCLUSION:
-            optimized += ". No text, letters, or words should appear in the image."
+        # Smart text handling - check if user wants text in image
+        text_indicators = ["sign", "placard", "banner", "text", "writing", "words", "letters", "팻말", "간판", "글자", "텍스트", "signboard", "written", "bold", "clear text"]
+        wants_text = any(indicator in optimized.lower() for indicator in text_indicators)
+        
+        # Enhanced Korean text detection
+        korean_text_patterns = ["참좋은복사기", "한글", "글씨", "문자"]
+        has_korean_text = any(pattern in optimized for pattern in korean_text_patterns)
+        
+        logger.info(f"Text detection - wants_text: {wants_text}, has_korean_text: {has_korean_text}")
+        
+        if wants_text or has_korean_text:
+            # User wants text - add instructions for clear text rendering (NEVER exclude text when requested)
+            optimized += ". Ensure any text is clearly visible, readable, and properly aligned with high contrast"
+            logger.info("Added text visibility instructions")
+        # Completely removed text exclusion logic to fix the text generation issue
             
         # Add quality indicators
         quality_suffixes = {
-            "high": ", highly detailed, professional quality, sharp focus",
+            "high": ", 8K resolution, ultra-detailed, masterpiece quality",
             "medium": ", good quality, clear details", 
             "low": ", simple style"
         }
+        
+        if quality in quality_suffixes:
+            optimized += quality_suffixes[quality]
         
         return optimized
     
