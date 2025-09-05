@@ -1,0 +1,51 @@
+{
+  "name": "nanobanana-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for Gemini 2.5 Flash Image (nanobanana) with text-to-image generation and editing capabilities",
+  "main": "src/server.py",
+  "scripts": {
+    "start": "python src/server.py",
+    "dev": "python src/server.py --dev",
+    "test": "pytest tests/",
+    "install-deps": "pip install -r requirements.txt"
+  },
+  "keywords": [
+    "mcp",
+    "gemini",
+    "nanobanana",
+    "image-generation",
+    "ai",
+    "google",
+    "claude"
+  ],
+  "author": "Claude Code Assistant",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ParkChongsam/nanobanana-mcp"
+  },
+  "bugs": {
+    "url": "https://github.com/ParkChongsam/nanobanana-mcp/issues"
+  },
+  "homepage": "https://github.com/ParkChongsam/nanobanana-mcp#readme",
+  "engines": {
+    "python": ">=3.8"
+  },
+  "mcp": {
+    "server": {
+      "name": "nanobanana",
+      "version": "1.0.0",
+      "description": "Gemini 2.5 Flash Image generation and editing server",
+      "tools": [
+        {
+          "name": "nanobanana_generate",
+          "description": "Generate images from text prompts using Gemini 2.5 Flash Image"
+        },
+        {
+          "name": "nanobanana_edit", 
+          "description": "Edit or transform existing images using natural language instructions"
+        }
+      ]
+    }
+  }
+}

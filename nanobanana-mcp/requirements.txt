@@ -1,0 +1,36 @@
+# Core MCP dependencies
+fastmcp>=0.5.0
+mcp>=1.0.0
+
+# Google AI and Vertex AI
+google-genai>=0.1.0
+google-cloud-aiplatform>=1.35.0
+google-auth>=2.15.0
+
+# Image processing
+Pillow>=10.0.0
+opencv-python>=4.8.0
+
+# Async and HTTP
+aiohttp>=3.8.0
+asyncio-throttle>=1.0.0
+
+# Utilities
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+typing-extensions>=4.7.0
+
+# Translation support
+googletrans>=4.0.0
+
+# Logging and debugging
+loguru>=0.7.0
+
+# File handling - standard library modules (no install needed)
+# pathlib, hashlib, base64, json, uuid are built-in
+
+# Development and testing (optional)
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0

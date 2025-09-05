@@ -1,0 +1,1 @@
+🔧 Gemini API 호출 방식 수정 - safety_settings 제거 및 config 간소화
